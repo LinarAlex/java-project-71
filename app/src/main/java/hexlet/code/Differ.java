@@ -40,7 +40,8 @@ public class Differ {
                     result.append("  ").append("- ").append(key).append(": ").append(mapFirst.get(key)).append("\n");
                 } else {
                     if (mapSecond.containsKey(key)) {
-                        result.append("  ").append("+ ").append(key).append(": ").append(mapSecond.get(key)).append("\n");
+                        result.append("  ").append("+ ").append(key).append(": ").append(mapSecond.get(key))
+                                .append("\n");
                     }
                 }
             }

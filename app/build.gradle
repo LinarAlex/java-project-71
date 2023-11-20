@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id 'checkstyle'
 }
 
 group = 'hexlet.code'
@@ -16,6 +17,7 @@ dependencies {
     implementation 'info.picocli:picocli:4.7.5'
     annotationProcessor 'info.picocli:picocli-codegen:4.7.5'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.1'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 test {
@@ -28,4 +30,8 @@ application {
 
 compileJava {
     options.release = 20
+}
+
+tasks.named('test', Test) {
+    useJUnitPlatform()
 }
