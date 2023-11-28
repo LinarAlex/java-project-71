@@ -9,11 +9,11 @@ import java.util.concurrent.Callable;
 
 @Command(name = "gendiff", mixinStandardHelpOptions = true, version = "gendiff 4.7.5",
             description = "Compares two configuration files and shows a difference.")
-        class App implements Callable<Integer> {
+public class App implements Callable<Integer> {
 
-    @Parameters(description = "path to first file")
+    @Parameters(index = "0", description = "path to first file")
         private String filepath1;
-    @Parameters(description = "path to second file")
+    @Parameters(index = "1", description = "path to second file")
         private String filepath2;
     @Option(names = {"-f", "--format"}, paramLabel = "format", description = "output format [default: stylish]")
         private String format = "stylish";
