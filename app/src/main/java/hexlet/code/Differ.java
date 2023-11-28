@@ -23,9 +23,15 @@ public class Differ {
             throw new Exception("File '" + fullPath + "' does not exist");
         }
         String content = Files.readString(fullPath);
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.readValue(content, new TypeReference<>() {
-        });
+        String dataFormat = getDataFormat(filePath);
+        return Parser.parse(content, dataFormat);
+    }
+
+    private static String getDataFormat(String filePath) {
+        int index = filePath.lastIndexOf('.');
+        return index > 0
+                ? filePath.substring(index + 1)
+                : "";
     }
 
     public static Map<String, Object> genDiff(Map<String, Object> data1, Map<String, Object> data2) {
