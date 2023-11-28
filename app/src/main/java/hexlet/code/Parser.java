@@ -8,12 +8,12 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 public class Parser {
     private static Map<String, Object> parseYml(String content) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
-        return objectMapper.readValue(content, new TypeReference<>() {});
+        return objectMapper.readValue(content, new TypeReference<>() { });
     }
 
     private static Map<String, Object> parseJson(String content) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.readValue(content, new TypeReference<>() {});
+        return objectMapper.readValue(content, new TypeReference<>() { });
     }
 
     public static Map<String, Object> parse(String content, String dataFormat) throws Exception {
