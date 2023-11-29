@@ -1,39 +1,70 @@
 package hexlet.code;
 
 import org.junit.jupiter.api.Test;
-import static org.assertj.core.api.Assertions.assertThat;
+
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class DifferTest {
-    @Test
-    public void differJsonfTest() throws Exception {
-        String filepath1 = "src/test/resources/filepath1.json";
-        String filepath2 = "src/test/resources/filepath2.json";
 
-        String expected = readFixture("filepath3.json");
-        String actual = Differ.generate(filepath1, filepath2);
-        assertThat(actual).isEqualTo(expected);
+    private final String path1 = "src/test/resources/step81.json";
+    private final String path2 = "src/test/resources/step82.json";
+    private final String path3 = "src/test/resources/step81.yml";
+    private final String path4 = "src/test/resources/step82.yml";
+
+    private final Path pathStylish =
+            Paths.get("src/test/resources/expected/testStylish").toAbsolutePath().normalize();
+    private final Path pathPlain =
+            Paths.get("src/test/resources/expected/testPlain").toAbsolutePath().normalize();
+    private final Path pathJson =
+            Paths.get("src/test/resources/expected/testJson").toAbsolutePath().normalize();
+
+    public DifferTest() throws IOException {
     }
 
     @Test
-    public void differYmlTest() throws Exception {
-        String filepath3 = "src/test/resources/filepath1.yml";
-        String filepath4 = "src/test/resources/filepath2.yml";
-
-        String expected = readFixture("filepath3.yml");
-        String actual = Differ.generate(filepath3, filepath4);
-        assertThat(actual).isEqualTo(expected);
+    public void test1() throws Exception {
+        String expected = Files.readString(pathStylish);
+        assertEquals(expected, Differ.generate(path1, path2));
     }
 
-    private static Path getFixturePath(String fileName) {
-        return Paths.get("src", "test", "resources", fileName)
-                .toAbsolutePath().normalize();
+    @Test
+    public void testStylish1() throws Exception {
+        String expected = Files.readString(pathStylish);
+        assertEquals(expected, Differ.generate(path1, path2, "stylish"));
     }
 
-    private static String readFixture(String fileName) throws Exception {
-        Path filePath = getFixturePath(fileName);
-        return Files.readString(filePath).trim();
+    @Test
+    public void testStylish2() throws Exception {
+        String expected = Files.readString(pathStylish);
+        assertEquals(expected, Differ.generate(path3, path4, "stylish"));
+    }
+
+    @Test
+    public void testPlain1() throws Exception {
+        String expected = Files.readString(pathPlain);
+        assertEquals(expected, Differ.generate(path1, path2, "plain"));
+    }
+
+    @Test
+    public void testPlain2() throws Exception {
+        String expected = Files.readString(pathPlain);
+        assertEquals(expected, Differ.generate(path3, path4, "plain"));
+    }
+
+    @Test
+    public void testJson1() throws Exception {
+        String expected = Files.readString(pathJson);
+        assertEquals(expected, Differ.generate(path1, path2, "json"));
+    }
+
+    @Test
+    public void testJson2() throws Exception {
+        String expected = Files.readString(pathJson);
+        assertEquals(expected, Differ.generate(path3, path4, "json"));
     }
 }

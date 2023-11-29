@@ -6,25 +6,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
 public class Parser {
-    private static Map<String, Object> parseYml(String content) throws Exception {
-        ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
-        return objectMapper.readValue(content, new TypeReference<>() { });
-    }
-
-    private static Map<String, Object> parseJson(String content) throws Exception {
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.readValue(content, new TypeReference<>() { });
+    private static ObjectMapper checkFormat(String dataFormat) throws Exception {
+        return "json".equals(dataFormat) ? new ObjectMapper() : new ObjectMapper(new YAMLFactory());
     }
 
     public static Map<String, Object> parse(String content, String dataFormat) throws Exception {
-        switch (dataFormat) {
-            case "yml":
-            case "yaml":
-                return parseYml(content);
-            case "json":
-                return parseJson(content);
-            default:
-                throw new Exception("Unknown format: '" + dataFormat + "'");
-        }
+        ObjectMapper objectMapper = checkFormat(dataFormat);
+        return objectMapper.readValue(content, new TypeReference<>() { });
     }
 }

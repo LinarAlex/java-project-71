@@ -15,12 +15,15 @@ public class App implements Callable<Integer> {
         private String filepath1;
     @Parameters(index = "1", description = "path to second file")
         private String filepath2;
-    @Option(names = {"-f", "--format"}, paramLabel = "format", description = "output format [default: stylish]")
-        private String format = "stylish";
+    @Option(names = {"-f", "--format"},
+            paramLabel = "format",
+            description = "output format: stylish, plain, json, no-format [default: ${DEFAULT-VALUE}]",
+            defaultValue = "stylish")
+        private String format;
 
     @Override
         public Integer call() throws Exception {
-        var diff = (Differ.generate(filepath1, filepath2));
+        var diff = (Differ.generate(filepath1, filepath2, format));
         System.out.println(diff);
         return 0;
     }
