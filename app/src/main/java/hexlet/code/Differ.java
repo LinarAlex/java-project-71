@@ -15,7 +15,7 @@ public class Differ {
         Map<String, Object> dataOfFile1 = getDataAndParse(filePath1);
         Map<String, Object> dataOfFile2 = getDataAndParse(filePath2);
         List<Map<String, Object>> difference = genDiff(dataOfFile1, dataOfFile2);
-        return difference.toString();
+        return Formatter.formatStyle(difference, "stylish");
     }
 
     public static String generate(String filePath1, String filePath2, String format) throws Exception {
