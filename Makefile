@@ -1,5 +1,8 @@
 .DEFAULT_GOAL := build-run
 
+setup:
+	make -C wrapper --gradle-version 8.4
+
 clean:
 	make -C app clean
 
