@@ -17,7 +17,7 @@ public final class App implements Callable<Integer> {
         private String filepath2;
     @Option(names = {"-f", "--format"},
             paramLabel = "format",
-            description = "output format: stylish, plain, json, no-format [default: ${DEFAULT-VALUE}]",
+            description = "output format: [default: stylish]",
             defaultValue = "stylish")
         private String format;
 
