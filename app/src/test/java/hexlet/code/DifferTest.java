@@ -1,6 +1,7 @@
 package hexlet.code;
 
 import org.junit.jupiter.api.Test;
+import org.skyscreamer.jsonassert.JSONAssert;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -33,6 +34,12 @@ public class DifferTest {
     }
 
     @Test
+    public void test2() throws Exception {
+        String expected = Files.readString(pathStylish);
+        assertEquals(expected, Differ.generate(path3, path4));
+    }
+
+    @Test
     public void testStylish1() throws Exception {
         String expected = Files.readString(pathStylish);
         assertEquals(expected, Differ.generate(path1, path2, "stylish"));
@@ -59,12 +66,12 @@ public class DifferTest {
     @Test
     public void testJson1() throws Exception {
         String expected = Files.readString(pathJson);
-        assertEquals(expected, Differ.generate(path1, path2, "json"));
+        JSONAssert.assertEquals(expected, Differ.generate(path1, path2, "json"), false);
     }
 
     @Test
     public void testJson2() throws Exception {
         String expected = Files.readString(pathJson);
-        assertEquals(expected, Differ.generate(path3, path4, "json"));
+        JSONAssert.assertEquals(expected, Differ.generate(path3, path4, "json"), false);
     }
 }
