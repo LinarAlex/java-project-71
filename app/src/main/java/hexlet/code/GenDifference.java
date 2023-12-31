@@ -15,11 +15,11 @@ public class GenDifference {
         keysSet.addAll(map2.keySet());
         for (String key :  keysSet) {
             Map<String, Object> map = new LinkedHashMap<>();
-            if (map1.containsKey(key) && !map2.containsKey(key)) {
+            if (!map2.containsKey(key)) {
                 map.put("key", key);
                 map.put("value", map1.get(key));
                 map.put("status", "removed");
-            } else if (!map1.containsKey(key) && map2.containsKey(key)) {
+            } else if (!map1.containsKey(key)) {
                 map.put("key", key);
                 map.put("value", map2.get(key));
                 map.put("status", "added");
