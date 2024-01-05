@@ -38,7 +38,7 @@ public class DifferTest {
 
     @Test
     public void test1() throws Exception {
-        assertEquals(resultStylish.trim(), Differ.generate(FILE1, FILE2));
+        assertEquals(resultStylish, Differ.generate(FILE1, FILE2));
     }
 
     @Test
@@ -48,7 +48,7 @@ public class DifferTest {
 
     @Test
     public void testStylish1() throws Exception {
-        assertEquals(resultStylish.trim(), Differ.generate(FILE1, FILE2, "stylish"));
+        assertEquals(resultStylish, Differ.generate(FILE1, FILE2, "stylish"));
     }
 
     @Test
