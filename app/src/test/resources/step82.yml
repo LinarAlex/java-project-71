@@ -12,7 +12,7 @@
     - 33
     - 44
     - 55
-  id: null,
+  id: null
   default:
     - "value1"
     - "value2"
